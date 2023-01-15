@@ -33,14 +33,17 @@ export function parseAnimes(document: Document): string[] {
    let animeList = []
    const listAnchor: HTMLCollection = document.getElementsByTagName('a')
 
+   //For each html anchor "<a>"
    for (let i = 0; i < listAnchor.length; i++) {
       let href: string | null = listAnchor[i].getAttribute("href")
       let classNames: string = listAnchor[i].className
       if (!href || classNames || !listAnchor[i].childElementCount) continue;
 
+      // Verification that the anchor contains a child with an image
       let imgAnimeElement: HTMLCollection = listAnchor[i].getElementsByTagName("img")
       if (imgAnimeElement.length !== 1) continue;
 
+      // Checking the source of the image
       let imgAnimeSrc: string | null = imgAnimeElement[0].getAttribute("src")
       if (!imgAnimeSrc || !imgAnimeSrc.includes("mavanimes.co/wp-content/uploads/")) continue
 
@@ -61,6 +64,8 @@ export function check(callback: (anime: string) => void) {
    fetchPage('https://mavanimes.co').then(document => {
       if (!document) return;
       const newAnimeList = parseAnimes(document)
+
+      //Difference between the old list and the new one
       const newAnimes = newAnimeList.filter(item => oldAnimeList.indexOf(item) < 0);
 
       console.log(new Date().toLocaleString() + " Site fetch, " + newAnimes.length + " new anime online")
@@ -82,6 +87,7 @@ export function check(callback: (anime: string) => void) {
  */
 export async function sendMessage(client: Client, anime: string, guild: Guild, channel: GuildBasedChannel | null) {
    try {
+      //If the discord channel is a text-based channel
       if (!channel?.isTextBased) {
          console.error("Error: Invalid Channel Type")
          process.exit(1)
