@@ -1,11 +1,11 @@
-# Mavanimes.co Scrapper
+# Mavanimes.co Scraper
 
 I've known and used Javascript for a while (2017). <br>
 After hearing a lot about TypeScript I took some time to learn this language.<br>
 made this project to put some of my learning into practice.
 
 ## About
-This NodeJS application is a web-scrapper of the site mavanimes.co.
+This NodeJS application is a web-scraper of the site mavanimes.co.
 With the discord.js library, it allows to send a discord message in the defined channel when an anime is uploaded.
 
 ## Configuration
