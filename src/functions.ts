@@ -1,7 +1,8 @@
 import {JSDOM} from "jsdom";
 import oldAnimeList from "./oldAnimeList.json";
 import fs from "fs";
-import {Client, Guild, GuildBasedChannel, TextChannel} from "discord.js";
+import {Client, Guild, GuildBasedChannel, GuildMember, Message, PermissionsBitField, TextChannel} from "discord.js";
+import {CrossPost} from "../settings.json"
 
 /**
  * Fetch a web page designated by its url and return the Document
@@ -79,6 +80,20 @@ export function check(callback: (anime: string) => void) {
 }
 
 /**
+ * Crosspost a message sent or returns an error
+ * @param {Message} message
+ */
+export async function crossPost(message: Message) {
+   try {
+      if (message.crosspostable) {
+         await message.crosspost()
+      }
+   } catch (e) {
+      console.error("Error: An error occurred during the publication of the message")
+   }
+}
+
+/**
  * Sends a message in the given channel or returns an error
  * @param client
  * @param anime
@@ -93,8 +108,28 @@ export async function sendMessage(client: Client, anime: string, guild: Guild, c
          process.exit(1)
       }
 
-      await (channel as TextChannel).send(anime)
+      // We get the client as a GuildMember of the guild
+      const guildMe: GuildMember | null = guild.members.me
+      if (!guildMe) {
+         console.error("Error: An error occurred during the sending of message")
+         process.exit(1)
+      }
+
+
+      // If the client does not have permission to send a message in the channel
+      if (!channel.permissionsFor(guildMe).has(PermissionsBitField.Flags.SendMessages)) {
+         console.error("Error: I don't have the permissions to send a message in the channel")
+         process.exit(1)
+      }
+
+      // Send the message in the channel
+      const message: Message = await (channel as TextChannel).send(anime)
+
+      // If the crossPost option is enabled, the crossPost function is called
+      if (CrossPost) await crossPost(message)
+
    } catch (e) {
-      console.error("Error: An error occurred during the sending of messages")
+      console.log(e)
+      console.error("Error: An error occurred during the sending of message")
    }
 }

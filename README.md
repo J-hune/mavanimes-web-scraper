@@ -11,12 +11,13 @@ With the discord.js library, it allows to send a discord message in the defined 
 ## Configuration
 Before launching the application, you must modify the configuration file `settings.js`
 
-| Setting Name        | Description                                                      |
-|---------------------|:-----------------------------------------------------------------|
-| token               | Discord Bot Token                                                |
-| timeBetweenEachCall | Interval (in minutes) between each check                         |
-| GuildID             | The id of the discord server on which the messages will be sent  |
-| ChannelID           | The id of the discord channel on which the messages will be sent |
+| Setting Name        | Description                                                                        |
+|---------------------|:-----------------------------------------------------------------------------------|
+| token               | Discord Bot Token                                                                  |
+| timeBetweenEachCall | Interval (in minutes) between each check                                           |
+| GuildID             | The id of the discord server on which the messages will be sent                    |
+| ChannelID           | The id of the discord channel on which the messages will be sent                   |
+| CrossPost           | If the channel is an announcement channel, it is possible to "publish" the message |
 > No Privileged Gateway Intents required
 
 
