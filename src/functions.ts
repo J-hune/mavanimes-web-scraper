@@ -69,7 +69,7 @@ export function check(callback: (anime: string) => void) {
       const newAnimes = newAnimeList.filter(item => oldAnimeList.indexOf(item) < 0);
 
       console.log(new Date().toLocaleString() + " Site fetch, " + newAnimes.length + " new anime online")
-      for (let anime of newAnimes) {
+      for (let anime of newAnimes.reverse()) {
          oldAnimeList.push(anime)
          callback(anime)
       }
