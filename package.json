@@ -1,6 +1,6 @@
 {
   "name": "mavanimes-scraper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Web scraper for mavanimes.co.",
   "main": "index.js",
   "scripts": {
