@@ -2,7 +2,7 @@
 
 I've known and used Javascript for a while (2017). <br>
 After hearing a lot about TypeScript I took some time to learn this language.<br>
-made this project to put some of my learning into practice.
+I made this project to put some of my learning into practice.
 
 ## About
 This NodeJS application is a web-scraper of the site mavanimes.co.
