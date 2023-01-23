@@ -7,7 +7,7 @@
          "dom"
       ],
       "outDir": "build",
-      "rootDir": "src",
+      "rootDirs": ["src", "settings.json"],
       "strict": true,
       "noImplicitAny": true,
       "esModuleInterop": true,

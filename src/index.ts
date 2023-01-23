@@ -1,6 +1,6 @@
 import {CronJob} from 'cron'
 import {check, sendMessage} from "./functions";
-import settings, {ChannelID, GuildID} from './settings.json'
+import settings, {ChannelID, GuildID} from "../settings.json"
 import {Client, Events, GatewayIntentBits, Guild, GuildBasedChannel} from "discord.js";
 
 // If the parameters are not valid the app is stopped
